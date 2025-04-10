@@ -5,9 +5,9 @@
 # Description:      This program calculates weekly pay and federal withheld tax
                     from an hourly wage, tax rate, and number of hours worked.
 # Input:            employeeNum (int), hoursWorked (int), hourlyRate (int),
-                    taxRate (int)
-# Output:           employeeNum (int), wagesPreTax (int), amountTaxed (int),
-                    wagesFinal (int)
+                    taxRate (double)
+# Output:           employeeNum (int), wagesPreTax (double), amountTaxed (double),
+                    wagesFinal (double)
 # Sources:          Assignment 1 specifications, assignment 1 sample
 #*****************************************************************************/
 
@@ -15,6 +15,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main() {
@@ -23,12 +24,15 @@ int main() {
    int employeeNum = 0;
    int hoursWorked = 0;
    int hourlyRate = 0;
-   int taxRate = 0;
+   double taxRate = 0.0;
    // Declare and initialize variables for employee's weekly pay pre-tax, after
    // tax, and amount withheld.
-   int wagesPreTax = 0;
-   int amountTaxed = 0;
-   int wagesFinal = 0;
+   double wagesPreTax = 0;
+   double amountTaxed = 0;
+   double wagesFinal = 0;
+
+   // Set decimal precision for output
+   cout << fixed << setprecision(2);
 
    // Display a welcome message
    cout << "This program will calculate your weekly pay before and after adjus\
@@ -48,7 +52,7 @@ ting for federal income taxes." << endl;
 
    // Calculate the values to be displayed
    wagesPreTax = hoursWorked * hourlyRate;
-   amountTaxed = wagesPreTax / taxRate;
+   amountTaxed = (taxRate / 100) * wagesPreTax;
    wagesFinal = wagesPreTax - amountTaxed;
 
    // Display the user's payroll summary
